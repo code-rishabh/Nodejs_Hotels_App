@@ -1,3 +1,5 @@
+require("dotenv").config()
+
 const express = require('express')
 const app = express()
 
@@ -5,7 +7,7 @@ const bodyParser = require("body-parser")
 app.use(bodyParser.json())
 
 const db = require("./db")
-const PORT = 3000
+const PORT = process.env.PORT || 3000
 
 app.get('/', (req, res) => {
   res.send('WELCOME TO MY HOTEL... WHAT CAN I HELP YOU WITH !!!')
@@ -34,6 +36,6 @@ app.use("/person", personRoutes)
 app.use("/menu", menuRoutes)
 
 
-app.listen(PORT || 3000, () => {
+app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`)
 })   
